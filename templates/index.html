@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag & Drop Board with Excel Export</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1 class="main-title" id="mainTitle" contenteditable="true">My Drag & Drop Board</h1>
+      <button class="edit-title-btn" id="editTitleBtn" title="Edit board title">✏️</button>
+    </header>
+
+    <div class="main-layout">
+      <!-- Todo List Sidebar (Left) -->
+      <aside class="todo-sidebar">
+        <div class="todo-header">
+          <h2 class="todo-title">📋 Todo List</h2>
+          <button class="add-todo-btn" id="showAddTodoBtn">+</button>
+        </div>
+        
+        <div class="add-todo-form hidden" id="addTodoForm">
+          <input 
+            type="text" 
+            id="newTodoInput" 
+            placeholder="Task name..." 
+            maxlength="50"
+          />
+          <input 
+            type="date" 
+            id="newTodoDate" 
+            class="date-input"
+          />
+          <div class="todo-form-actions">
+            <button class="btn-small confirm-btn" id="confirmTodoBtn">Add</button>
+            <button class="btn-small cancel-btn" id="cancelTodoBtn">Cancel</button>
+          </div>
+        </div>
+
+        <div class="todo-list" id="todoList">
+          <!-- Todo items rendered by JS -->
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <!-- Horizontal Available Items Shelf -->
+        <div class="items-shelf-container">
+          <div class="shelf-header">
+            <h2 class="shelf-title">Available Items</h2>
+            <button class="add-item-btn" id="showAddItemBtn">
+              <span>➕</span> Add Item
+            </button>
+          </div>
+          <div class="items-shelf-horizontal" id="itemsShelf">
+            <!-- Items rendered horizontally by JS -->
+          </div>
+          <div class="add-item-form hidden" id="addItemForm">
+            <input 
+              type="text" 
+              id="newItemInput" 
+              placeholder="Enter item name..." 
+              maxlength="30"
+            />
+            <div class="color-picker-container">
+              <label class="color-label">Color:</label>
+              <div class="color-options" id="colorOptions">
+                <button class="color-option selected" data-color="#667eea" style="background: #667eea;" title="Blue"></button>
+                <button class="color-option" data-color="#48bb78" style="background: #48bb78;" title="Green"></button>
+                <button class="color-option" data-color="#ed8936" style="background: #ed8936;" title="Orange"></button>
+                <button class="color-option" data-color="#e53e3e" style="background: #e53e3e;" title="Red"></button>
+                <button class="color-option" data-color="#9f7aea" style="background: #9f7aea;" title="Purple"></button>
+                <button class="color-option" data-color="#38b2ac" style="background: #38b2ac;" title="Teal"></button>
+                <button class="color-option" data-color="#d69e2e" style="background: #d69e2e;" title="Yellow"></button>
+                <button class="color-option" data-color="#ed64a6" style="background: #ed64a6;" title="Pink"></button>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn-small confirm-btn" id="confirmAddBtn">Add</button>
+              <button class="btn-small cancel-btn" id="cancelAddBtn">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vertical Drop Sections -->
+        <div class="drop-sections-vertical" id="dropSectionsContainer">
+          <!-- Sections rendered vertically by JS -->
+        </div>
+
+        <div class="global-controls">
+          <button class="btn control-btn" id="addSectionBtn">
+            <span>➕</span> Add Section
+          </button>
+          <button class="btn control-btn" id="exportExcelBtn">
+            <span>📊</span> Export to Excel
+          </button>
+          <button class="btn control-btn" id="resetAllBtn">
+            <span>🔄</span> Reset All
+          </button>
+          <button class="btn control-btn" id="clearAllBtn">
+            <span>🗑️</span> Clear All Sections
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
